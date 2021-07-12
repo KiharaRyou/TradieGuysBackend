@@ -25,7 +25,10 @@ SECRET_KEY = 'z4!8jv#h4_=s&scg3d(-n7q$8lu8nglc_oi@wxa7(xc9s8pse-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '140.238.205.250',
+    'tradieguys.sifathan.com'
+]
 
 
 # Application definition
