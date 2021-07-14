@@ -26,6 +26,7 @@ SECRET_KEY = 'z4!8jv#h4_=s&scg3d(-n7q$8lu8nglc_oi@wxa7(xc9s8pse-'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     '140.238.205.250',
     'tradieguys.sifathan.com'
 ]
@@ -42,13 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'users.apps.UsersConfig'
+    'categories.apps.CategoriesConfig',
+    'users.apps.UsersConfig',
+    'images.apps.ImagesConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'utils.pagination.DefaultPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -134,8 +137,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
