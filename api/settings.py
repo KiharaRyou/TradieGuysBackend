@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'categories.apps.CategoriesConfig',
+    'coupons.apps.CouponsConfig',
     'users.apps.UsersConfig',
     'images.apps.ImagesConfig'
 ]

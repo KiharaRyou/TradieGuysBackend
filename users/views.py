@@ -34,7 +34,8 @@ class LoginAPI(ObtainAuthToken):
                 'status': 'OK',
                 'token': token.key,
                 'email': user.email,
-                'username': user.username
+                'username': user.username,
+                'is_admin': user.is_admin
             })
         else:
             return Response({
@@ -47,4 +48,5 @@ def get_current_user(request):
     return Response({
         'username': request.user.username,
         'email': request.user.email,
+        'is_admin': request.user.is_admin,
     })

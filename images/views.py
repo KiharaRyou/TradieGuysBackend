@@ -6,6 +6,7 @@ from images.models import Image
 def image_upload(request):
     file = request.data['file']
     image = Image.objects.create(image=file)
+    url = request.get_full_path()
     return Response({
         'status': 'OK',
         'url': image.image.url
