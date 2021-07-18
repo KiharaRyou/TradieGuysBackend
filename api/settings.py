@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'categories.apps.CategoriesConfig',
     'coupons.apps.CouponsConfig',
     'users.apps.UsersConfig',
-    'images.apps.ImagesConfig'
+    'images.apps.ImagesConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 AUTH_USER_MODEL = 'users.User'
