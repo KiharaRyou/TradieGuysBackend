@@ -12,10 +12,6 @@ class CouponDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponSerializer
 
-class CouponDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Coupon.objects.all()
-    serializer_class = CouponSerializer
-
 @api_view(['GET'])
 def get_active_coupons(request):
     queryset = Coupon.objects.filter(is_active=True)
@@ -30,8 +26,6 @@ def get_active_coupons(request):
 def get_similar_coupons(request):
     id = request.GET.get('id', '')
     parent = request.GET.get('parent', '')
-    print(id)
-    print(parent)
     queryset = Coupon.objects.filter(parent=parent).exclude(id=id)[:5]
     serializer = CouponSerializer(queryset, many=True)
 
