@@ -30,5 +30,6 @@ class ListCreateOrder(APIView):
 
 
 class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
