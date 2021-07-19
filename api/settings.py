@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'images.apps.ImagesConfig',
     'orders.apps.OrdersConfig',
+    'articles.apps.ArticlesConfig',
 ]
 
 AUTH_USER_MODEL = 'users.User'
