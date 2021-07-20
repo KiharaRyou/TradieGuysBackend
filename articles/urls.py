@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.ListCreateArticle.as_view()),
     path('<int:pk>/', views.ArticleDetail.as_view()),
     path('get/', views.get_articles),
+    path('comments/', views.comments),
     ]

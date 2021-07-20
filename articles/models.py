@@ -26,7 +26,7 @@ class Comment(models.Model):
     )
     owner = models.ForeignKey(User, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField(null=True, blank=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True, null=True)
 
