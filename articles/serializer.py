@@ -4,11 +4,10 @@ from users.serializers import UserSerializer
 
 class ArticleSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True)
-    category = serializers.StringRelatedField()
 
     class Meta:
         model = Article
-        fields = ['id', 'parent', 'title', 'content', 'created', 'is_active', 'owner', 'last_modified', 'category']
+        fields = ['id', 'parent', 'title', 'content', 'created', 'is_active', 'owner', 'last_modified']
 
 class CommentSerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True)

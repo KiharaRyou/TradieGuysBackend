@@ -20,7 +20,7 @@ class ListCreateArticle(APIView):
         })
 
     def post(self, request):
-        catergory = Category.objects.get(id=request.data['category'])
+        catergory = Category.objects.get(id=request.data['parent'])
         article = Article.objects.create(
             parent=catergory,
             owner=request.user, 
@@ -53,8 +53,13 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
 
 @api_view(['GET'])
 def get_articles(request):
-    category = request.GET.get('category', '')
-    queryset = Article.objects.filter(is_active=True)
+    categroies = request.GET.get('category', '')
+    
+    if categroies == '':
+        queryset = Article.objects.all().order_by('-created')
+    else:
+        array = categroies.split(',')
+        queryset = Article.objects.filter(parent__in=array).order_by('-created')
     serializer = ArticleSerializer(queryset, many=True)
 
     return Response({
