@@ -1,15 +1,17 @@
 from rest_framework import serializers
 from articles.models import Article, Comment
+from users.serializers import UserSerializer
 
 class ArticleSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner = UserSerializer(read_only=True)
+    category = serializers.StringRelatedField()
 
     class Meta:
         model = Article
-        fields = ['id', 'parent', 'title', 'content', 'created', 'is_active', 'owner', 'last_modified']
+        fields = ['id', 'parent', 'title', 'content', 'created', 'is_active', 'owner', 'last_modified', 'category']
 
 class CommentSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner = UserSerializer(read_only=True)
 
     class Meta:
         model = Comment

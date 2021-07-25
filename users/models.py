@@ -52,6 +52,10 @@ class User(AbstractBaseUser):
     )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    avatar = models.CharField(max_length=128, null=True, blank=True)
+    title = models.CharField(max_length=128, null=True, blank=True) 
+    introduction = models.TextField(null=True, blank=True)
+    experience = models.TextField(null=True, blank=True)
 
     objects = UserManager()
 
@@ -72,10 +76,12 @@ class User(AbstractBaseUser):
         return True
 
     @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+    def article_count(self):
+        return len(self.articles.all())
+
+    @property
+    def articles(self):
+        return self.articles.all()
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

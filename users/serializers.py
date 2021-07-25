@@ -1,6 +1,13 @@
 from rest_framework import serializers
 from users.models import User
 
+class UserSerializer(serializers.ModelSerializer):
+    article_count = serializers.ReadOnlyField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'avatar', 'title', 'introduction', 'experience', 'is_active', 'article_count', 'is_admin']
+
 class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(
         style={'input_type': 'password'}, 

@@ -15,3 +15,6 @@ class Category(models.Model):
     @property
     def articles(self):
         return len(self.article_set.all())
+
+    def __str__(self):
+        return self.title
