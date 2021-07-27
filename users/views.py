@@ -13,7 +13,7 @@ from articles.serializer import ArticleSerializer
 @api_view(['GET', 'POST'],)
 def users_api(request):
     if request.method == 'GET':
-        users = User.objects.all()[:4]
+        users = sorted(User.objects.all(), key=lambda t: t.article_count, reverse=True)[:4]
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
     if request.method == 'POST':    
@@ -87,3 +87,10 @@ def get_current_user(request):
     return Response({
         **serializer.data
     })
+
+@api_view(['GET'],)
+def get_staff(request):
+    if request.method == 'GET':
+        users = User.objects.filter(is_admin=True)
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
